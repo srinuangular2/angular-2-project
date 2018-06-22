@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+  <h2>Registration Form</h2>
+  <form action="/action_page.php" [formGroup]="regForm" (ngSubmit)="postData(regForm.value)" method="post" id="reg" autocomplete="off">
+    <div class="form-group">
+        <label for="uname">User Name</label>
+        <input type="text" class="form-control" id="uname" placeholder="Enter User Name" formControlName="uname">
+        <div *ngIf="regForm.controls['uname'].touched && !regForm.controls['uname'].valid">
+<span *ngIf="regForm.controls['uname'].hasError('required')">Please Enter Your Name</span>
+<span *ngIf="regForm.controls['uname'].hasError('minlength') && !regForm.controls['uname'].hasError('required')">Please Enter Min 5 Charactors</span>
+<span *ngIf="regForm.controls['uname'].hasError('maxlength') && !regForm.controls['uname'].hasError('required')">Please Enter Max 10 Charactors</span>
+        </div>
+      </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" formControlName="email">
+    <div *ngIf="regForm.controls['email'].touched && !regForm.controls['email'].valid">
+      <span *ngIf="regForm.controls['email'].hasError('required')">Please Enter Email</span>
+      <span *ngIf="regForm.controls['email'].hasError('pattern') && !regForm.controls['email'].hasError('required')">Please Enter Valid Email</span>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" formControlName="pwd">
+     <div *ngIf="regForm.controls['pwd'].touched && regForm.controls['pwd'].invalid">
+<span *ngIf="regForm.controls['pwd'].hasError('required')">Please Enter Your Password</span>
+<span *ngIf="regForm.controls['pwd'].hasError('minlength') && !regForm.controls['pwd'].hasError('required')">Min 4 Charactors</span>
+<span *ngIf="regForm.controls['pwd'].hasError('maxlength') && !regForm.controls['pwd'].hasError('required')">Max 6 Charactors</span>
+     </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phn">Mobile Number:</label>
+        <input type="tel" class="form-control" id="phn" placeholder="Enter Mobile Number" formControlName="phn">
+<div *ngIf="regForm.controls['phn'].touched && regForm.controls['phn'].invalid">
+  <span *ngIf="regForm.controls['phn'].hasError('required')">Please Enter Your Mobile Number</span>
+</div>
+      </div>
+
+      
+
+      <div class="form-group">
+        <div class="form-control">
+        <label class="control-label">Gender</label>
+        <label class="radio-inline">
+          <input type="radio" formControlName="gender" value="male"> Male
+        </label>
+        <label class="radio-inline">
+            <input type="radio" formControlName="gender" value="female"> Female
+          </label>
+          <div *ngIf="regForm.controls['gender'].touched && regForm.controls['gender'].invalid">
+            <span *ngIf="regForm.controls['gender'].hasError('required')">Please Select Gender</span>
+          </div>
+      </div>
+      </div>
+       
+
+        <div class="form-group">
+            <label for="loc">Location:</label>
+            <select class="form-control" formControlName="loc">
+              <option value="">--Select Location--</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Bangloore">Bangloore</option>
+              <option value="Pune">Pune</option>
+              <option value="Delhi">Delhi</option>
+            </select>
+            <div *ngIf="regForm.controls['loc'].touched && regForm.controls['loc'].invalid">
+              <span *ngIf="regForm.controls['loc'].hasError('required')">Please Select your Location</span>
+            </div>
+          </div>
+    
+    <button  class="btn btn-success" [disabled]="!regForm.valid">Submit</button>
+  </form>
+</div></div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>IT/Non IT Jobs</h2>
+  <p>The .table-bordered class adds borders to a table:</p>  
+  
+  <div>
+      <input type="text" name="search" placeholder="Search here" [(ngModel)]="text"> Search
+      </div>
+      <br>
+
+      
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>S.no</th>
+        <th>Job Title</th>
+        <th>Posted Date</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let countries of myarray | mypipe:text | paginate: { itemsPerPage: numberofpage, currentPage: p, totalItems: myarray.length } ; let i=index;">
+      <tr>
+          <td>{{ (p - 1) * numberofpage + i +1 }}</td>
+      <td><a routerLink="/jobview"> {{countries.name}}</a></td>
+      <td>{{countries.capital}}</td>
+</tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
